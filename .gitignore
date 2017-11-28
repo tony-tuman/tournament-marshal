@@ -1,1 +1,5 @@
 /server/target
+/.idea
+/server/.idea
+/TournamentMarshal/.idea
+/server/*.iml
