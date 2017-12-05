@@ -1,16 +1,24 @@
 package tmarshal.model;
 
+import com.google.gdata.model.gd.StructuredPostalAddress;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
+
 /**
  * Created by scoan04 on 11/27/2017.
  */
+@Component
 public class User {
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
     Integer id;
     String userName;
     String first;
     String last;
-    Integer password;
+    String password;
     String email;
-    Location location;
+    StructuredPostalAddress postalAddress;
 
     public Integer getId() {
         return id;
@@ -44,12 +52,12 @@ public class User {
         this.last = last;
     }
 
-    public Integer getPassword() {
+    public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password.hashCode();
+        this.password = passwordEncoder.encode(password);
     }
 
     public String getEmail() {
@@ -60,13 +68,12 @@ public class User {
         this.email = email;
     }
 
-
-    public Location getLocation() {
-        return location;
+    public StructuredPostalAddress getPostalAddress() {
+        return postalAddress;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setPostalAddress(StructuredPostalAddress postalAddress) {
+        this.postalAddress = postalAddress;
     }
 
     @Override

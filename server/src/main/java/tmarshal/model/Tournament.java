@@ -1,5 +1,7 @@
 package tmarshal.model;
 
+import com.google.gdata.model.gd.StructuredPostalAddress;
+
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -12,7 +14,7 @@ public class Tournament {
     String email;
     String website;
     String description;
-    Location location;
+    StructuredPostalAddress location;
     Integer numberOfRounds;
     Integer tables;
     LocalDateTime startTime;
@@ -62,11 +64,11 @@ public class Tournament {
         this.description = description;
     }
 
-    public Location getLocation() {
+    public StructuredPostalAddress getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(StructuredPostalAddress location) {
         this.location = location;
     }
 
