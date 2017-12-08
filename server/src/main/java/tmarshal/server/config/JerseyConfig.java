@@ -1,4 +1,4 @@
-package tmarshal.server;
+package tmarshal.server.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.glassfish.jersey.server.ResourceConfig;

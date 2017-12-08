@@ -1,6 +1,6 @@
 /*
  * Data
- */
+
 
 var contacts = [
   {key: 1, name: "James K Nelson", email: "james@jamesknelson.com", description: "Front-end Unicorn"},
@@ -10,15 +10,9 @@ var contacts = [
 
 var newContact = {name: "", email: "", description: ""}
 
-
+ */
 /*
  * Entry point
  */
 
-ReactDOM.render(
-  React.createElement(ContactView, {
-    contacts: contacts,
-    newContact: newContact
-  }),
-  document.getElementById('react-app')
-)
+ReactDOM.render(<ContactView />, document.getElementById('react-app'));

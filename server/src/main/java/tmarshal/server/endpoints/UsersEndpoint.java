@@ -1,4 +1,4 @@
-package tmarshal.endpoints;
+package tmarshal.server.endpoints;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -20,6 +20,10 @@ public class User {
     String email;
     StructuredPostalAddress postalAddress;
 
+    public User (String userName) {
+        this.userName = userName;
+    }
+
     public Integer getId() {
         return id;
     }

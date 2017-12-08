@@ -1,4 +1,4 @@
-package tmarshal.server;
+package tmarshal.server.service;
 
 import org.springframework.stereotype.Service;
 import tmarshal.model.User;
