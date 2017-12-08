@@ -10,6 +10,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.Collection;
+import java.util.Optional;
 
 @Component
 @Path("/users")
@@ -20,7 +22,14 @@ public class UsersEndpoint {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getEventVersion1(@PathParam("id") String id) {
+    public Optional<User> getSingleUserVersion1(@PathParam("id") String id) {
         return userService.findById(id);
+    }
+
+    @GET
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<User> getAllUsersVersion1(@PathParam("id") String id) {
+        return userService.getAllUsers();
     }
 }

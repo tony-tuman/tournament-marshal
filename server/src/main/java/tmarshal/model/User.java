@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class User {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-    Integer id;
+    Integer key;
     String userName;
     String first;
     String last;
@@ -20,16 +20,18 @@ public class User {
     String email;
     StructuredPostalAddress postalAddress;
 
-    public User (String userName) {
+    public User (Integer key, String userName) {
+        this.key = key;
         this.userName = userName;
+        this.email = userName + "@kamasoft.org";
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getKey() {
+        return key;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setKey(Integer key) {
+        this.key = key;
     }
 
     public String getUserName() {
@@ -87,12 +89,12 @@ public class User {
 
         User user = (User) o;
 
-        return id.equals(user.id);
+        return key.equals(user.key);
 
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return key.hashCode();
     }
 }
