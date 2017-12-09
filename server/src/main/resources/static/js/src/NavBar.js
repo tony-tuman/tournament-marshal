@@ -7,13 +7,10 @@ var NavBar = React.createClass ({
     var menuOptions = [];
     for (i=0; i < this.props.items.length; i++) {
        menuOptions.push(React.createElement('li', {key : i},
-                            React.createElement('a', {href : '#'}, this.props.items[i])
+                            React.createElement('a', {href : this.props.items[i].nav}, this.props.items[i].display)
                             )
                        )
     };
-
-    menuOptions.push(React.createElement('li', {key : i+1},
-        React.createElement('a', {href : '#'}, sessionUser)));
 
     return (
       React.createElement('div', {className: 'NavBar'},
@@ -26,5 +23,3 @@ var NavBar = React.createClass ({
     )
   }
 });
-
-ReactDOM.render(React.createElement(NavBar, {items:["Play","Organize","Login"]}), document.getElementById('nav-bar'));

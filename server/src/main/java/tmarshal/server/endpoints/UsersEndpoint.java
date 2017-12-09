@@ -2,6 +2,7 @@ package tmarshal.server.endpoints;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import tmarshal.model.SparceUser;
 import tmarshal.model.User;
 import tmarshal.server.service.UserService;
 
@@ -29,7 +30,7 @@ public class UsersEndpoint {
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public Collection<User> getAllUsersVersion1(@PathParam("id") String id) {
+    public Collection<SparceUser> getAllUsersVersion1(@PathParam("id") String id) {
         return userService.getAllUsers();
     }
 }

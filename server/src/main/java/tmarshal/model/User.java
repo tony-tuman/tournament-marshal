@@ -14,11 +14,12 @@ public class User {
     private BCryptPasswordEncoder passwordEncoder;
     Integer key;
     String userName;
-    String first;
-    String last;
+    String firstName;
+    String lastName;
     String password;
     String email;
     StructuredPostalAddress postalAddress;
+    Boolean emailVerified;
 
     public User (Integer key, String userName) {
         this.key = key;
@@ -42,20 +43,24 @@ public class User {
         this.userName = userName;
     }
 
-    public String getFirst() {
-        return first;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst(String first) {
-        this.first = first;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast() {
-        return last;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast(String last) {
-        this.last = last;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFullName() {
+        return getFirstName() + getLastName();
     }
 
     public String getPassword() {
@@ -80,6 +85,14 @@ public class User {
 
     public void setPostalAddress(StructuredPostalAddress postalAddress) {
         this.postalAddress = postalAddress;
+    }
+
+    public Boolean getEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(Boolean emailVerified) {
+        this.emailVerified = emailVerified;
     }
 
     @Override

@@ -8,7 +8,6 @@ import tmarshal.server.service.Mailer;
 public class TournamentMarshalServer {
 
     public static void main(String[] args) {
-        Mailer.sendMail("tournament.marshal.software@gmail.com", "tony.tuman@gmail.com", "Test Email", "This is a test email sent from the Tournament Marshal Software");
         SpringApplication.run(TournamentMarshalServer.class, args);
     }
 

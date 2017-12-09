@@ -17,11 +17,15 @@ import javax.mail.internet.MimeMessage;
 public class Mailer {
     public static void sendMail(String from, String to, String subject, String text) {
         Properties props = new Properties();
+        String user;
+        String password;
         try {
             TournamentMarshalConfig config = new TournamentMarshalConfig("C:\\Users\\Tony\\tournament-marshal.cfg");
             for (Map.Entry entry : config.getProperties("mail.*").entrySet()) {
                 props.put(entry.getKey(), entry.getValue());
             }
+
+
             Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
@@ -43,4 +47,16 @@ public class Mailer {
             throw new RuntimeException(e);
         }
     }
+
+    /*  tournament.marshal.cfg file for gmail account should include the following properties.
+
+        mail.smtp.host,smtp.gmail.com
+        mail.smtp.socketFactory.port,465
+        mail.smtp.socketFactory.class,javax.net.ssl.SSLSocketFactory
+        mail.smtp.auth,true
+        mail.smtp.port,465
+        pwd,
+        user,tournament.marshal.software
+
+     */
 }
