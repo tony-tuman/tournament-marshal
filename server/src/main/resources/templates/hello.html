@@ -8,9 +8,12 @@
 </head>
 
 <body>
+    <div id="nav-bar"/>
     <div id="react-app"/>
 
-    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <script th:inline="javascript">
+        var sessionUser = [[${#httpServletRequest.remoteUser}]];
+    </script>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out"/>
     </form>
@@ -21,6 +24,8 @@
     <script src="js/src/UserItem.js"/>
     <script src="js/src/UserForm.js"/>
     <script src="js/src/UserView.js"/>
+    <script src="js/src/NavBar.js"/>
+
 
 </body>
 </html>
