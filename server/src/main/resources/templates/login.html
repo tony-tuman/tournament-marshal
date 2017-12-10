@@ -2,11 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Tournament Marshal Login</title>
+    <title>Tournament Marshal</title>
+    <meta charset="utf-8"/>
+    <base href="/"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 </head>
 <body>
+<div id="nav-bar" />
+<div id="main-canvas" />
+<script src="//fb.me/react-0.14.3.js"/>
+<script src="//fb.me/react-dom-0.14.3.js"/>
+<script src="js/NavBar.js"/>
+<script>
+    ReactDOM.render(React.createElement(NavBar,
+        {items:[{display:"About", nav:"#"},
+                {display:"Organize", nav:"#"},
+                {display:"Sign up", nav:"#"}
+               ]
+        }), document.getElementById('nav-bar'));
+</script>
 <div th:if="${param.error}">
-    Invalid username and password.
+    Invalid username and password combination.
 </div>
 <div th:if="${param.logout}">
     You have been logged out.
