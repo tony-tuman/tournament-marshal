@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Tournament Marshal - Forgot User Name</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16"/>
+</head>
+<body>
+<div id="nav-bar" />
+<div id="forgot-username" />
+<script src="//fb.me/react-0.14.3.js"/>
+<script src="//fb.me/react-dom-0.14.3.js"/>
+<script src="js/NavBar.js"/>
+<script src="js/ForgotUsername.js" />
+<script>
+    ReactDOM.render(React.createElement(NavBar,
+            { items:[{display:"Sign up", nav:"#"}] }
+        ), document.getElementById('nav-bar'));
+    ReactDOM.render(React.createElement(ForgotUsername), document.getElementById('forgot-username'));
+</script>
+</body>
+</html>

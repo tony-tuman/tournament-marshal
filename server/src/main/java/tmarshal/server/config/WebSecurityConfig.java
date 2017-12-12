@@ -15,7 +15,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers( "/css/**","/login","/js/NavBar.js","/js/UserItem.js","/js/UserForm.js","css/style.css").permitAll()
+                .antMatchers( "/images/**","/css/**","/login","/js/**","/forgot-username","/forgot-password","/v1").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -23,9 +23,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                .permitAll()
+                // Below is for the rest controllers???
+                .and()
+                .httpBasic().and().authorizeRequests().antMatchers("/v1/**")
+                .hasRole("USER").antMatchers("/**").hasRole("ADMIN").and()
+                .csrf().disable().headers().frameOptions().disable()
+        ;
     }
-
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -33,6 +38,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .inMemoryAuthentication()
                 .passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("tony").password(encoder.encode("password")).roles("USER");
+                .withUser("tony").password(encoder.encode("password")).roles("USER", "ADMIN")
+                .and()
+                .withUser("tom").password(encoder.encode("password")).roles("USER")
+                .and()
+                .withUser("jerry").password(encoder.encode("password")).roles("USER");
     }
 }

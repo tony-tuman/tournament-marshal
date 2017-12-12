@@ -6,21 +6,10 @@
     <meta charset="utf-8"/>
     <base href="/"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16"/>
 </head>
 <body>
 <div id="nav-bar" />
-<div id="main-canvas" />
-<script src="//fb.me/react-0.14.3.js"/>
-<script src="//fb.me/react-dom-0.14.3.js"/>
-<script src="js/NavBar.js"/>
-<script>
-    ReactDOM.render(React.createElement(NavBar,
-        {items:[{display:"About", nav:"#"},
-                {display:"Organize", nav:"#"},
-                {display:"Sign up", nav:"#"}
-               ]
-        }), document.getElementById('nav-bar'));
-</script>
 <div th:if="${param.error}">
     Invalid username and password combination.
 </div>
@@ -28,9 +17,21 @@
     You have been logged out.
 </div>
 <form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password  : <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
+    <div id='login' />
 </form>
+<div id="main-canvas" />
+<script src="//fb.me/react-0.14.3.js"/>
+<script src="//fb.me/react-dom-0.14.3.js"/>
+<script src="js/NavBar.js"/>
+<script src="js/SignIn.js" />
+<script>
+    ReactDOM.render(React.createElement(NavBar,
+            { items:[{display:"Sign up", nav:"#"}] }
+        ), document.getElementById('nav-bar'));
+    ReactDOM.render(React.createElement(SignIn), document.getElementById('login'));
+</script>
+<a href="/forgot-username">Forgot user name?</a>
+<br/>
+<a href="/forgot-password">Forgot password?</a>
 </body>
 </html>

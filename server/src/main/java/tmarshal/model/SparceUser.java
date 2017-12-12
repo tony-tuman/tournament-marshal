@@ -10,11 +10,10 @@ public class SparceUser {
     String emailAddress;
 
     public SparceUser (User user) {
+        this.key = user.getKey();
         this.userName = user.getUserName();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
-        this.key = user.getKey();
-        this.emailAddress = user.getEmail();
     }
 
     public Integer getKey() {
@@ -47,13 +46,5 @@ public class SparceUser {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
     }
 }

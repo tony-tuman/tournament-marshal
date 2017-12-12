@@ -1,15 +1,13 @@
-var NavBar = React.createClass ({
-    propTypes: {
-        items: React.PropTypes.array
-    },
+class NavBar extends React.Component {
+    constructor (props) {
+        super(props);
+    }
 
-  render: function() {
+  render() {
     var menuOptions = [];
-    for (i=0; i < this.props.items.length; i++) {
-       menuOptions.push(React.createElement('li', {key : i},
-                            React.createElement('a', {href : this.props.items[i].nav}, this.props.items[i].display)
-                            )
-                       )
+    menuOptions.push(this.menuElement(0, {href: '/About'}, 'About'));
+    for (let i=0; i < this.props.items.length; i++) {
+       menuOptions.push(this.menuElement(i+1, this.props.items[i].nav, this.props.items[i].display))
     };
 
     return (
@@ -22,4 +20,13 @@ var NavBar = React.createClass ({
       )
     )
   }
-});
+
+  menuElement(itemKey, nav, display) {
+      return React.createElement('li', {key : itemKey},
+                 React.createElement('a', {href : nav}, display)
+             );
+  }
+
+}
+
+NavBar.propTypes = {items: React.PropTypes.array};

@@ -10,21 +10,26 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService {
-    private HashSet<User> users;
+    private HashMap<String, User> users;
 
     @PostConstruct
     private void loadUser() {
-        users = new HashSet<>();
-        users.add(new User(1,"Tom"));
-        users.add(new User(2,"Jerry"));
+        users = new HashMap<>();
+        users.put("1", new User(1,"tom"));
+        users.put("2", new User(2,"jerry"));
+        users.put("3", new User(3, "tony"));
     }
 
-    public Optional<User> findById(String id) {
-        return users.stream().filter(user -> user.getKey().equals(id)).findFirst();
+    public User findById(String id) {
+        return users.get(id);
     }
 
     public Collection<SparceUser> getAllUsers(){
-        return users.stream().map(SparceUser::new).collect(Collectors.toList());
+        HashSet <SparceUser> returnSet = new HashSet();
+        for (User user : users.values()) {
+            returnSet.add(new SparceUser(user));
+        }
+        return returnSet;
     }
 }
 
