@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import tmarshal.model.User;
 import tmarshal.model.SparceUser;
+import tmarshal.server.exceptions.UnauthorizedAccessException;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -29,25 +30,15 @@ public class UserService {
         users.put(nextId.toString(), new User(nextId, userName));
     }
 
-
-    public void verifyAuthority(User specifiedUser) throws Exception {
-        SimpleGrantedAuthority ADMIN_AUTHORITY = new SimpleGrantedAuthority("ROLE_ADMIN");
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth.getName().equals(specifiedUser.getUserName()) ||
-            auth.getAuthorities().contains(ADMIN_AUTHORITY)) {
-            throw new Exception("Get the heck outta here!!!!");
-        }
-    }
-
-    public User findById(String id) throws Exception {
+    public User findById(String id) throws UnauthorizedAccessException {
         User specifiedUser = users.get(id);
-        verifyAuthority(specifiedUser);
+        specifiedUser.verifyAuthority();
         return specifiedUser;
     }
 
-    public void deleteById(String id) throws Exception {
+    public void deleteById(String id) throws UnauthorizedAccessException {
         User specifiedUser = users.get(id);
-        verifyAuthority(specifiedUser);
+        specifiedUser.verifyAuthority();
         users.remove(id);
     }
 

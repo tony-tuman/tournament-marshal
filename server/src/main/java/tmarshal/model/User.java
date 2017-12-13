@@ -2,14 +2,18 @@ package tmarshal.model;
 
 import com.google.gdata.model.gd.StructuredPostalAddress;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import tmarshal.server.exceptions.UnauthorizedAccessException;
 
 /**
  * Created by scoan04 on 11/27/2017.
  */
 @Component
-public class User {
+public class User implements AuthorizedEntity {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     Integer key;
@@ -109,5 +113,15 @@ public class User {
     @Override
     public int hashCode() {
         return key.hashCode();
+    }
+
+    @Override
+    public void verifyAuthority(AccessTypes ...accessTypes) throws UnauthorizedAccessException {
+        SimpleGrantedAuthority ADMIN_AUTHORITY = new SimpleGrantedAuthority("ROLE_ADMIN");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth.getName().equals(this.getUserName()) ||
+                auth.getAuthorities().contains(ADMIN_AUTHORITY))) {
+            throw new UnauthorizedAccessException();
+        }
     }
 }
