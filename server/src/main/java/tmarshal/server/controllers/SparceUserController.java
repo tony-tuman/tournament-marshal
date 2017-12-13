@@ -18,6 +18,6 @@ public class SparceUserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody SparceUser getSparceUser(@PathVariable(value="id") String id) throws UnauthorizedAccessException {
-        return new SparceUser(userService.findById(id));
+        return userService.findSparceById(id);
     }
 }

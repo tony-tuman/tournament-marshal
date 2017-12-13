@@ -7,7 +7,6 @@ public class SparceUser {
     String userName;
     String firstName;
     String lastName;
-    String emailAddress;
 
     public SparceUser (User user) {
         this.key = user.getKey();

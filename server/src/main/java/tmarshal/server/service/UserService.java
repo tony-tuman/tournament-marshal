@@ -46,6 +46,11 @@ public class UserService {
         createUser(user.getUserName());
     }
 
+    public SparceUser findSparceById(String id) throws UnauthorizedAccessException {
+        User specifiedUser = users.get(id);
+        return new SparceUser(specifiedUser);
+    }
+
     public Collection<SparceUser> getAllUsers(){
         HashSet <SparceUser> returnSet = new HashSet();
         for (User user : users.values()) {
