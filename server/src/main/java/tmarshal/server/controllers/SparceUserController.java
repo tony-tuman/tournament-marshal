@@ -16,7 +16,7 @@ public class SparceUserController {
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody SparceUser getSparceUser(@PathVariable(value="id") String id){
+    public @ResponseBody SparceUser getSparceUser(@PathVariable(value="id") String id) throws Exception {
         return new SparceUser(userService.findById(id));
     }
 }

@@ -18,16 +18,19 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    SimpleGrantedAuthority ADMIN_AUTHORITY = new SimpleGrantedAuthority("ROLE_ADMIN");
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody User getUser(@PathVariable(value="id") String id) throws Exception {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User specifiedUser = userService.findById(id);
-        if (auth.getName().equals(specifiedUser.getUserName()) || auth.getAuthorities().contains(ADMIN_AUTHORITY)) {
-            return userService.findById(id);
-        } else {
-            throw new Exception("Get out!!!!");
-        }
+        return userService.findById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public @ResponseBody void deleteUser(@PathVariable(value="id") String id) throws Exception {
+        userService.deleteById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public @ResponseBody void deleteUser(@PathVariable(value="user") User user) throws Exception {
+        userService.addUser(user);
     }
 }

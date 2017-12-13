@@ -44,8 +44,6 @@
             <version>5.0.2.RELEASE</version>
         </dependency>
 
-
-
         <!-- Jackson databinding and annotations -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
