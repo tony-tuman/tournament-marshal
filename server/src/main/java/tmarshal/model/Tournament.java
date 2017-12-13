@@ -144,7 +144,6 @@ public class Tournament {
         Tournament that = (Tournament) o;
 
         return id.equals(that.id);
-
     }
 
     @Override
