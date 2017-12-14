@@ -9,6 +9,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import tmarshal.server.exceptions.UnauthorizedAccessException;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Created by scoan04 on 11/27/2017.
  */
@@ -24,11 +29,15 @@ public class User implements AuthorizedEntity {
     String email;
     StructuredPostalAddress postalAddress;
     Boolean emailVerified;
+    String roles;
 
     public User (Integer key, String userName) {
         this.key = key;
         this.userName = userName;
         this.email = userName + "@kamasoft.org";
+    }
+
+    public User(){
     }
 
     public Integer getKey() {
@@ -99,6 +108,14 @@ public class User implements AuthorizedEntity {
         this.emailVerified = emailVerified;
     }
 
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -118,6 +135,7 @@ public class User implements AuthorizedEntity {
     @Override
     public void verifyAuthority(AccessTypes ...accessTypes) throws UnauthorizedAccessException {
         SimpleGrantedAuthority ADMIN_AUTHORITY = new SimpleGrantedAuthority("ROLE_ADMIN");
+        
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth.getName().equals(this.getUserName()) ||
                 auth.getAuthorities().contains(ADMIN_AUTHORITY))) {
