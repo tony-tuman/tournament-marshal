@@ -16,12 +16,8 @@ public class SparseUserService {
     @Autowired
     SparseUserDao sparseUserDao;
 
-    public Collection<SparseUser> findAll() throws UnauthorizedAccessException {
+    public Collection<SparseUser> getAllSparseUsers() throws UnauthorizedAccessException {
         return sparseUserDao.getAllUsers();
-    }
-
-    public SparseUser getUserByName(String userName) throws UnauthorizedAccessException {
-        return sparseUserDao.getUserByName(userName);
     }
 }
 
