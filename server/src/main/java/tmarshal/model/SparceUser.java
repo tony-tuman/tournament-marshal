@@ -2,17 +2,20 @@ package tmarshal.model;
 
 import tmarshal.model.User;
 
-public class SparceUser {
+public class SparseUser {
     Integer key;
     String userName;
     String firstName;
     String lastName;
 
-    public SparceUser (User user) {
+    public SparseUser (User user) {
         this.key = user.getKey();
         this.userName = user.getUserName();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
+    }
+
+    public SparseUser () {
     }
 
     public Integer getKey() {

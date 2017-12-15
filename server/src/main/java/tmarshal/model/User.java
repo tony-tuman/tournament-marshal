@@ -19,8 +19,8 @@ import javax.persistence.Id;
  */
 @Component
 public class User implements AuthorizedEntity {
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    //@Autowired
+    //private BCryptPasswordEncoder passwordEncoder;
     Integer key;
     String userName;
     String firstName;
@@ -81,7 +81,7 @@ public class User implements AuthorizedEntity {
     }
 
     public void setPassword(String password) {
-        this.password = passwordEncoder.encode(password);
+        //this.password = passwordEncoder.encode(password);
     }
 
     public String getEmail() {
@@ -135,7 +135,7 @@ public class User implements AuthorizedEntity {
     @Override
     public void verifyAuthority(AccessTypes ...accessTypes) throws UnauthorizedAccessException {
         SimpleGrantedAuthority ADMIN_AUTHORITY = new SimpleGrantedAuthority("ROLE_ADMIN");
-        
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth.getName().equals(this.getUserName()) ||
                 auth.getAuthorities().contains(ADMIN_AUTHORITY))) {

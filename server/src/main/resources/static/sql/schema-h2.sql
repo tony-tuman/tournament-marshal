@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
   key INTEGER PRIMARY KEY,
   userName VARCHAR(50),
   firstName VARCHAR(50),

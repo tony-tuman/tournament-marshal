@@ -14,24 +14,24 @@ import tmarshal.server.exceptions.UnauthorizedAccessException;
 import tmarshal.server.service.UserService;
 
 @Controller
-@RequestMapping("/user/{id}")
+@RequestMapping("/user/{userName}")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody User getUser(@PathVariable(value="id") String id) throws UnauthorizedAccessException {
-        return userService.findById(id);
+    public @ResponseBody User getUser(@PathVariable(value="userName") String userName) throws UnauthorizedAccessException {
+        return userService.findByUserName(userName);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public @ResponseBody void deleteUser(@PathVariable(value="id") String id) throws UnauthorizedAccessException {
-        userService.deleteById(id);
+    public @ResponseBody void deleteUser(@PathVariable(value="userName") String userName) throws UnauthorizedAccessException {
+        userService.delete(userName);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public @ResponseBody void deleteUser(@PathVariable(value="user") User user) throws UnauthorizedAccessException {
-        userService.addUser(user);
+    public @ResponseBody void addUser(@PathVariable(value="user") User user) throws UnauthorizedAccessException {
+        userService.create(null);
     }
 }
