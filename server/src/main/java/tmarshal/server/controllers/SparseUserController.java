@@ -12,7 +12,7 @@ import tmarshal.server.service.SparseUserService;
 import java.util.Collection;
 
 @Controller
-@RequestMapping("/sparse-users")
+@RequestMapping("/sparseUsers")
 public class SparseUserController {
 
     @Autowired

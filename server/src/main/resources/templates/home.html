@@ -11,13 +11,13 @@
 
 <body>
     <div id="nav-bar"/>
-    <div id="react-app"/>
+    <div id="main-canvas"/>
 
 
     <script src="//fb.me/react-0.14.3.js"/>
     <script src="//fb.me/react-dom-0.14.3.js"/>
     <script src="js/UserItem.js"/>
-    <script src="js/UserForm.js"/>
+    <script src="js/UserView.js"/>
     <script src="js/NavBar.js"/>
 
     <script th:inline="javascript">
@@ -31,6 +31,8 @@
                     {display:"Sign out", nav:"/login?logout"}
                    ]
             }), document.getElementById('nav-bar'));
+
+        ReactDOM.render(React.createElement(UserView), document.getElementById('main-canvas'));
     </script>
 </body>
 </html>

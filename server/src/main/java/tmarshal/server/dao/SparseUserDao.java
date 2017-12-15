@@ -16,13 +16,7 @@ public class SparseUserDao {
 
     @Transactional(readOnly=true)
     public Collection<SparseUser> getAllUsers() {
-        String sql = "select key, userName, firstName, lastName from Users";
-        return jdbcTemplate.queryForList(sql, SparseUser.class, new Object[]{}, new SparseUserRowMapper());
-    }
-
-    @Transactional(readOnly=true)
-    public SparseUser getUserByName(String userName) {
-        String sql = "select key, userName, firstName, lastName from Users";
-        return jdbcTemplate.queryForObject(sql, new Object[]{userName}, new SparseUserRowMapper());
+        String sql = "select key, userName, firstName, lastName from users";
+        return jdbcTemplate.query(sql, new SparseUserRowMapper());
     }
 }

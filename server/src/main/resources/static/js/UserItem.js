@@ -9,8 +9,8 @@ var UserItem = React.createClass({
     return (
       React.createElement('div', {className: 'UserItem'},
         React.createElement('div', {className: 'UserItem-userName'}, this.props.userName),
-        React.createElement('div', {className: 'UserItem-email'}, this.props.email),
-        React.createElement('div', {className: 'UserItem-description'}, this.props.description)
+        React.createElement('div', {className: 'UserItem-firstName'}, this.props.firstName),
+        React.createElement('div', {className: 'UserItem-lastName'}, this.props.lastName)
       )
     )
   },
