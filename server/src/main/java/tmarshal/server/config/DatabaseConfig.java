@@ -26,6 +26,7 @@ public class DatabaseConfig {
             DatabasePopulator databasePopulator = new ResourceDatabasePopulator(initSchema, initData);
             DatabasePopulatorUtils.execute(databasePopulator, dataSource);
         } catch (Exception ex) {
+            ex.printStackTrace();
             // TODO: use Flyway to manage database migrations to avoid this catch.
         }
         return dataSource;

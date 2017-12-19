@@ -5,7 +5,7 @@
     <title>Tournament Marshal</title>
     <meta charset="utf-8"/>
     <base href="/"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tournament-marshal.css}" />
     <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16"/>
 </head>
 
@@ -14,25 +14,49 @@
     <div id="main-canvas"/>
 
 
-    <script src="//fb.me/react-0.14.3.js"/>
-    <script src="//fb.me/react-dom-0.14.3.js"/>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
     <script src="js/UserItem.js"/>
     <script src="js/UserView.js"/>
     <script src="js/NavBar.js"/>
+    <script src="js/NewUserForm.js" type="text/babel"/>
+    <script src="js/PostalAddressItem.js" type="text/babel"/>
+    <script src="js/AboutForm.js" type="text/babel" />
 
-    <script th:inline="javascript">
+    <script th:inline="javascript" type="text/babel">
         var sessionUser = [[${#httpServletRequest.remoteUser}]];
         /* Need to localize this and have it done in the back end */
         ReactDOM.render(React.createElement(NavBar,
-            {items:[{display:"Play", nav:"#"},
-                    {display:"Organize", nav:"#"},
-                    {display:sessionUser, nav:"#"},
-                    {display:"swagger", nav:"/swagger-ui.html"}, /* TODO make this visible only to admin users */
-                    {display:"Sign out", nav:"/login?logout"}
+            {items:[{display:"Play", nav:userPage},
+                    {display:"Organize", nav:aboutPage},
+                    {display:sessionUser, nav:aboutPage},
+                    {display:"swagger", nav:swaggerPage}, /* TODO make this visible only to admin users */
+                    {display:"Sign out", nav:logoutPage}
                    ]
             }), document.getElementById('nav-bar'));
+        aboutPage();
 
-        ReactDOM.render(React.createElement(UserView), document.getElementById('main-canvas'));
+        function userPage() {
+            ReactDOM.render(React.createElement(UserView), document.getElementById('main-canvas'));
+        }
+
+        function aboutPage() {
+            ReactDOM.render(React.createElement(AboutForm), document.getElementById('main-canvas'));
+        }
+
+        function logoutPage() {
+            window.location.replace("/login?logout");
+        }
+
+        function swaggerPage() {
+            window.open("/swagger-ui.html");
+        }
+
     </script>
 </body>
 </html>

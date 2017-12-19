@@ -15,7 +15,7 @@ public class UserDao {
 
     @Transactional(readOnly=true)
     public User findUserByName(String userName) {
-        String sql = "select * from Users where userName = ?";
+        String sql = "select * from users join postalAddresses p on mailingAddress = p.key where userName = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{userName}, new UserRowMapper());
     }
 
@@ -27,15 +27,15 @@ public class UserDao {
 
     @Transactional(readOnly=false)
     public void updateUserByName(User user) {
-        String sql = "update Users ('userName', 'firstName', 'lastName', 'password', 'email', 'emailVerified', 'roles') values (?,?,?,?,?,?,?) where key = ?";
-        jdbcTemplate.update(sql, new Object[]{user.getUserName(), user.getFirstName(), user.getLastName(),
+        String sql = "update Users ('userName', 'fullName', 'password', 'email', 'emailVerified', 'roles') values (?,?,?,?,?,?,?) where key = ?";
+        jdbcTemplate.update(sql, new Object[]{user.getUserName(), user.getFullName(),
                                               user.getEmail(), user.getEmailVerified(), user.getRoles()});
     }
 
     @Transactional(readOnly=false)
     public void insertUser(User user) {
-        String sql = "insert into Users ('userName', 'firstName', 'lastName', 'password', 'email', 'emailVerified', 'roles') values (?,?,?,?,?,?,?) where key = ?";
-        jdbcTemplate.update(sql, new Object[]{user.getUserName(), user.getFirstName(), user.getLastName(),
+        String sql = "insert into Users ('userName', 'fullName', 'password', 'email', 'emailVerified', 'roles') values (?,?,?,?,?,?,?) where key = ?";
+        jdbcTemplate.update(sql, new Object[]{user.getUserName(), user.getFullName(),
                 user.getEmail(), user.getEmailVerified(), user.getRoles()});
     }
 }

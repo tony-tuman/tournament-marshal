@@ -1,11 +1,10 @@
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Tournament Marshal</title>
     <meta charset="utf-8"/>
     <base href="/"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tournament-marshal.css}" />
     <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16"/>
 </head>
 <body>
@@ -17,21 +16,37 @@
     You have been logged out.
 </div>
 <form th:action="@{/login}" method="post">
-    <div id='login' />
+    <div id='main-canvas' />
 </form>
-<div id="main-canvas" />
-<script src="//fb.me/react-0.14.3.js"/>
-<script src="//fb.me/react-dom-0.14.3.js"/>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 <script src="js/NavBar.js"/>
-<script src="js/SignIn.js" />
+<script src="js/SignIn.js"/>
+<script src="js/NewUserForm.js" type="text/babel"/>
+<script src="js/PostalAddressItem.js" type="text/babel"/>
+<script src="js/AboutForm.js" type="text/babel"/>
 <script>
     ReactDOM.render(React.createElement(NavBar,
-            { items:[{display:"Sign up", nav:"#"}] }
+            { items:[{display:"About", nav:showAbout},
+                     {display:"Sign in", nav:signIn},
+                     {display:"Sign up", nav:signUp}] }
         ), document.getElementById('nav-bar'));
-    ReactDOM.render(React.createElement(SignIn), document.getElementById('login'));
+
+    signIn();
+
+    function signUp() {
+        ReactDOM.render(React.createElement(NewUserForm), document.getElementById('main-canvas'));
+    }
+
+    function showAbout() {
+       ReactDOM.render(React.createElement(AboutForm), document.getElementById('main-canvas'));
+    }
+
+    function signIn() {
+        ReactDOM.render(React.createElement(SignIn), document.getElementById('main-canvas'));
+    }
+
 </script>
-<a href="/forgot-username">Forgot user name?</a>
-<br/>
-<a href="/forgot-password">Forgot password?</a>
 </body>
 </html>

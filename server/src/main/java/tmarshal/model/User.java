@@ -19,23 +19,14 @@ import javax.persistence.Id;
  */
 @Component
 public class User implements AuthorizedEntity {
-    //@Autowired
-    //private BCryptPasswordEncoder passwordEncoder;
     Integer key;
     String userName;
-    String firstName;
-    String lastName;
+    String fullName;
     String password;
     String email;
-    StructuredPostalAddress postalAddress;
+    PostalAddress postalAddress;
     Boolean emailVerified;
     String roles;
-
-    public User (Integer key, String userName) {
-        this.key = key;
-        this.userName = userName;
-        this.email = userName + "@kamasoft.org";
-    }
 
     public User(){
     }
@@ -56,32 +47,28 @@ public class User implements AuthorizedEntity {
         this.userName = userName;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getFullName() {
-        return getFirstName() + getLastName();
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPassword() {
         return password;
     }
 
+    /* Note, this is only used for JAXB and database interactions and
+       does not encrypt the password.  Use encryptPassword(password)
+       instead.
+     */
     public void setPassword(String password) {
-        //this.password = passwordEncoder.encode(password);
+        this.password = password;
+    }
+
+    public void encryptPassword(String password) {
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 
     public String getEmail() {
@@ -92,11 +79,11 @@ public class User implements AuthorizedEntity {
         this.email = email;
     }
 
-    public StructuredPostalAddress getPostalAddress() {
+    public PostalAddress getPostalAddress() {
         return postalAddress;
     }
 
-    public void setPostalAddress(StructuredPostalAddress postalAddress) {
+    public void setPostalAddress(PostalAddress postalAddress) {
         this.postalAddress = postalAddress;
     }
 

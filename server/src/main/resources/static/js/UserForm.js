@@ -1,15 +1,10 @@
-var UserForm = React.createClass({
-  propTypes: {
-    User: React.PropTypes.object.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-  },
-
-  render: function() {
+class UserForm extends React.Component {
+  render() {
     return (
       React.createElement('form', {className: 'UserForm'},
         React.createElement('input', {
           type: 'text',
-          placeholder: 'Name (required)',
+          placeholder: 'User Name (required)',
           value: this.props.User.userName,
           onChange: function(e) {
               onChange(Object.assign({}, oldUser, {userName: e.target.value}));
@@ -33,5 +28,5 @@ var UserForm = React.createClass({
         React.createElement('button', {type: 'submit'}, "Add User")
       )
     )
-  },
-});
+  }
+}

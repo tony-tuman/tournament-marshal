@@ -2,21 +2,20 @@ package tmarshal.server.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tmarshal.model.PostalAddress;
 import tmarshal.model.SparseUser;
-import tmarshal.server.mapper.SparseUserRowMapper;
+import tmarshal.server.mapper.PostalAddressRowMapper;
 
 import java.util.Collection;
 
-@Service
-public class SparseUserDao {
+public class PostalAddressDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Transactional(readOnly=true)
-    public Collection<SparseUser> getAllUsers() {
-        String sql = "select key, userName, fullName from users";
-        return jdbcTemplate.query(sql, new SparseUserRowMapper());
+    public Collection<PostalAddress> getAllUsers() {
+        String sql = "select key, addressLine1, addressLine2, city, postalCode, country from postal-codes";
+        return jdbcTemplate.query(sql, new PostalAddressRowMapper());
     }
 }

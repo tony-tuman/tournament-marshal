@@ -5,14 +5,12 @@ import tmarshal.model.User;
 public class SparseUser {
     Integer key;
     String userName;
-    String firstName;
-    String lastName;
+    String fullName;
 
     public SparseUser (User user) {
         this.key = user.getKey();
         this.userName = user.getUserName();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
+        this.fullName = user.getFullName();
     }
 
     public SparseUser () {
@@ -34,19 +32,11 @@ public class SparseUser {
         this.userName = userName;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

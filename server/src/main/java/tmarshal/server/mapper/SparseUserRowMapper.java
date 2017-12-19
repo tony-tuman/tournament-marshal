@@ -13,8 +13,7 @@ public class SparseUserRowMapper implements RowMapper<SparseUser> {
             SparseUser user = new SparseUser();
             user.setKey(rs.getInt("key"));
             user.setUserName(rs.getString("userName"));
-            user.setFirstName(rs.getString("firstName"));
-            user.setLastName(rs.getString("lastName"));
+            user.setFullName(rs.getString("fullName"));
             return user;
         }
 }

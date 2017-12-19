@@ -21,6 +21,7 @@ public class SparseUserController {
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     Collection<SparseUser> getSparseUsers() throws UnauthorizedAccessException {
+        System.out.println("Called sparseUsers");
         return sparseUserService.getAllSparseUsers();
     }
 }

@@ -37,11 +37,11 @@ body {
 }
 
 
-.UserForm {
+.NewUserForm {
   padding: 8px 24px;
 }
-.UserForm > input,
-.UserForm > textarea {
+input,
+textarea {
   display: block;
   width: 240px;
   padding: 4px 8px;
@@ -69,7 +69,7 @@ body {
 /*
   Styles for navbar
 */
-ul {
+.navBar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -77,11 +77,11 @@ ul {
     background-color: #0066ff;
 }
 
-li {
+.navBar li {
     float: left;
 }
 
-li a {
+.navBar li a {
     display: block;
     color: white;
     text-align: center;
@@ -90,6 +90,6 @@ li a {
 }
 
 /* Change the link color to #111 (black) on hover */
-li a:hover {
+.navBar li a:hover {
     background-color: #111;
 }

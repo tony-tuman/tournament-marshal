@@ -1,11 +1,5 @@
-var UserItem = React.createClass({
-  propTypes: {
-    userName: React.PropTypes.string.isRequired,
-    email: React.PropTypes.string,
-    description: React.PropTypes.string,
-  },
-
-  render: function() {
+class UserItem extends React.Component {
+  render() {
     return (
       React.createElement('div', {className: 'UserItem'},
         React.createElement('div', {className: 'UserItem-userName'}, this.props.userName),
@@ -13,5 +7,5 @@ var UserItem = React.createClass({
         React.createElement('div', {className: 'UserItem-lastName'}, this.props.lastName)
       )
     )
-  },
-});
+  }
+}
